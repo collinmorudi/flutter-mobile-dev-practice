@@ -9,11 +9,18 @@ class IntroScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Mindful"),
       ),
-      body: const Center(
-        child: Text(
-          "Welcome to Mindful App",
-          style: TextStyle(fontSize: 24),
-        ),
+      body: Stack(
+        children: [
+          Positioned.fill(child: Image.asset(
+            'assets/Sea.jpg',
+            fit: BoxFit.cover,
+          )),
+          const Center(
+          child: Text(
+            "Welcome to Mindful",
+            style: TextStyle(fontSize: 24),
+          ),
+        )],
       ),
     );
   }
