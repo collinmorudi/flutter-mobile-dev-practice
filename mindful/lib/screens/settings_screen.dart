@@ -8,11 +8,36 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final TextEditingController textName = TextEditingController();
+  final List<String> _images = ["Lake", "Mountain", "Sea", "Country"];
+  String _selectedImage = "Lake";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Settings"),),
-      body: const Placeholder(),
+      appBar: AppBar(
+        title: const Text("Settings"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: textName,
+              decoration: const InputDecoration(hintText: "Type your name: "),
+            ),
+            DropdownButton<String>(
+              value: _selectedImage,
+              items: _images.map((String value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value));
+              }).toList(),
+              onChanged: (newValue) {},
+            )
+          ],
+        ),
+      ),
     );
   }
 }
