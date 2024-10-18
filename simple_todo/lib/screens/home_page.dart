@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo/utils/todo_list.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   List todoList = [
     ['Buy milk', false],
     ['Buy eggs', false],
@@ -18,6 +23,12 @@ class HomePage extends StatelessWidget {
     ['Buy tea', false],
     ['Buy biscuits', false],
   ];
+
+  void checkBoxChanged(int index) {
+    setState(() {
+      todoList[index][1] = !todoList[index][1];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +45,10 @@ class HomePage extends StatelessWidget {
           itemBuilder: (BuildContext context, index) {
             return TodoList(
               taskName: todoList[index][0],
+              taskCompleted: todoList[index][1],
+              onChanged: (value) {
+                checkBoxChanged(index);
+              },
             );
           },
         ));
