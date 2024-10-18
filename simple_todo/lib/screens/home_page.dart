@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   void saveNewTask() {
     setState(() {
       todoList.add([_controller.text, false]);
+      _controller.clear();
     });
   }
 
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                      borderRadius: BorderRadius.circular(15),
                   ),
-                  hintText: 'Name your task',
+                  hintText: 'Add a new todo item',
                 ),
               ),
             ),
