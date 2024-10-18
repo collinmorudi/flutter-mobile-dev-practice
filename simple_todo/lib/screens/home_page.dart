@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_todo/utils/todo_list.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -7,6 +8,15 @@ class HomePage extends StatelessWidget {
     ['Buy milk', false],
     ['Buy eggs', false],
     ['Buy bread', false],
+    ['Buy butter', false],
+    ['Buy cheese', false],
+    ['Buy jam', false],
+    ['Buy sugar', false],
+    ['Buy salt', false],
+    ['Buy pepper', false],
+    ['Buy coffee', false],
+    ['Buy tea', false],
+    ['Buy biscuits', false],
   ];
 
   @override
@@ -22,26 +32,8 @@ class HomePage extends StatelessWidget {
         body: ListView.builder(
           itemCount: todoList.length,
           itemBuilder: (BuildContext context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                  top: 20, left: 20, right: 20, bottom: 0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.deepPurple,
-                ),
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  todoList[index][0],
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    decoration: todoList[index][1]
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none,
-                  ),
-                ),
-              ),
+            return TodoList(
+              taskName: todoList[index][0],
             );
           },
         ));
