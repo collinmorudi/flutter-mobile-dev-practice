@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_todo/utils/todo_list.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -14,14 +14,6 @@ class _HomePageState extends State<HomePage> {
     ['Buy eggs', false],
     ['Buy bread', false],
     ['Buy butter', false],
-    ['Buy cheese', false],
-    ['Buy jam', false],
-    ['Buy sugar', false],
-    ['Buy salt', false],
-    ['Buy pepper', false],
-    ['Buy coffee', false],
-    ['Buy tea', false],
-    ['Buy biscuits', false],
   ];
 
   void checkBoxChanged(int index) {
@@ -33,24 +25,63 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.deepPurple.shade300,
-        appBar: AppBar(
-          title: const Text('Simple Todo'),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-          centerTitle: true,
-        ),
-        body: ListView.builder(
-          itemCount: todoList.length,
-          itemBuilder: (BuildContext context, index) {
-            return TodoList(
-              taskName: todoList[index][0],
-              taskCompleted: todoList[index][1],
-              onChanged: (value) {
-                checkBoxChanged(index);
-              },
-            );
-          },
-        ));
+      backgroundColor: Colors.deepPurple.shade300,
+      appBar: AppBar(
+        title: const Text('Simple Todo'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+        itemCount: todoList.length,
+        itemBuilder: (BuildContext context, index) {
+          return TodoList(
+            taskName: todoList[index][0],
+            taskCompleted: todoList[index][1],
+            onChanged: (value) {
+              checkBoxChanged(index);
+            },
+          );
+        },
+      ),
+      floatingActionButton: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.deepPurple.shade200,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.white,
+                    ),
+                     borderRadius: BorderRadius.circular(15),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.deepPurple,
+                    ),
+                     borderRadius: BorderRadius.circular(15),
+                  ),
+                  hintText: 'Name your task',
+                ),
+              ),
+            ),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                // todoList.add(['New task', false]);
+              });
+            },
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+            child: const Icon(Icons.add),
+          ),
+        ],
+      ),
+    );
   }
 }
